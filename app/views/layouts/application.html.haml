@@ -6,6 +6,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    = render 'shared/shared_links'
     .bar
     .banner
       %center
@@ -13,4 +14,7 @@
     .bar{:align => "center", :text => ""}
       %strong Welcome to Global Business Power Corporation Online Career Application System
     .container
+      - flash.each do |k,v|
+        %div{ id: "#{k}"}
+          %h3= v
       = yield

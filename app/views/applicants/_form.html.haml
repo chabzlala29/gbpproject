@@ -249,42 +249,41 @@
       %button.add.button Edit
       %button.delete.button Delete
   / 
-  %fieldset.row2
-    %legend
-      Job Preferences
-    %strong
-      %br>/
-      Prefered job vacancy :
-    %p
-      %label
-        1st Preference
-      %input.long{:type => "text"}/
-    %p
-      %label
-        2nd Preference
-      %input{:maxlength => "10", :type => "text"}/
-    %p
-      %label.optional
-        3rd Preference
-      %input.long{:type => "text"}/
-    %p
-      %label
-        Source of application
-      %select
-        %option
-        %option{:value => "1"}
-          United States
-    %p
-      %label.optional
-        Specify if others
-      %input{:maxlength => "10", :type => "text"}/
-    %p
-      %label
-        First Name
-      %input{:maxlength => "10", :type => "text"}/
-      %label
-        Last Name
-      %input{:maxlength => "10", :type => "text"}/
+  = f.fields_for :job_preference do |job|
+    %fieldset.row7
+      %legend
+        Job Preferences
+      %strong
+        %br>/
+        Prefered job vacancy :
+      %p
+        %label
+          1st Preference
+        = job.text_field :first_pref
+      %p
+        %label
+          2nd Preference
+        = job.text_field :second_pref
+      %p
+        %label.optional
+          3rd Preference
+        = job.text_field :third_pref
+      %p
+        %label#source_label
+          Source of application
+        = job.select :source, JobPreference::SOURCE_LISTS
+      %p
+        %label.optional
+          Specify if others
+        = check_box_tag :specify_other
+        = job.text_field :source_sub, style: 'display: none'
+      %p
+        %label#job_pref_firstname{style: "display:none"}
+          First Name
+        = job.text_field :firstname, style: 'display: none'
+        %label#job_pref_lastname{style: 'display:none'}
+          Last Name
+        = job.text_field :lastname, style: 'display: none'
   %fieldset.row3
     %legend
       Character Reference
@@ -411,48 +410,58 @@
     %legend
       Additional Information
     %p
-      1)Has there been any case file by you or filed against you by any of your persent and/or previous employers, or any other
-      %br>/
-      person or entity?
-      %br/
-      If yes, please explain.
-      %br/
-      = succeed "Yes" do
-        %input{:name => "filed", :type => "radio", :value => "expectation1"}/
-      = succeed "No" do
-        %input{:name => "filed", :type => "radio", :value => "expectation2"}/
-      %br/
-      2)Do you have any existing or previous (unpaid) financial obligation arising from an employer - employee relation,
-      %br/
-      credit card transaction, load obligation, contractual obligation, and/or other transaction of a similar nature?
-      %br/
-      If yes, please enumerate.
-      %br/
-      = succeed "Yes" do
-        %input{:name => "unpaid", :type => "radio", :value => "expectation1"}/
-      = succeed "No" do
-        %input{:name => "unpaid", :type => "radio", :value => "expectation2"}/
-      %br/
-      3)Are you aware of any physical/mental condition that may hamper your work responsibilities?
-      %br/
-      please list them downif any.
-      %br/
-      = succeed "Yes" do
-        %input{:name => "condition", :type => "radio", :value => "expectation1"}/
-      = succeed "No" do
-        %input{:name => "condition", :type => "radio", :value => "expectation2"}/
-      %br/
-      4) Have you ever been treated for alcoholism or drug addiction? Have you used illegal drugs or abused alcohol in the
-      %br>/
-      past?
-      %br/
-      If yes please explain.
-      %br/
-      = succeed "Yes" do
-        %input{:name => "alcohol", :type => "radio", :value => "expectation1"}/
-      = succeed "No" do
-        %input{:name => "alcohol", :type => "radio", :value => "expectation2"}/
-      %br/
+      = f.fields_for :answers do |answer|
+        %div
+          = answer.object.question.question
+
+
+          = answer.hidden_field :id, value: answer.object.id
+          = answer.hidden_field :question_id, value: answer.object.question.id
+
+          %br
+          = answer.check_box :answer
+          %span
+            Check if Yes
+      -#- @questions.each_with_index do |q, i|
+        -#%div
+          -#= "#{i + 1})"
+          -#= q.question
+
+          -#%br
+          -#= check_box_tag 'accept'
+          -#%span
+            -#Check if Yes
+      -#2)Do you have any existing or previous (unpaid) financial obligation arising from an employer - employee relation,
+      -#%br/
+      -#credit card transaction, load obligation, contractual obligation, and/or other transaction of a similar nature?
+      -#%br/
+      -#If yes, please enumerate.
+      -#%br/
+      -#= succeed "Yes" do
+        -#%input{:name => "unpaid", :type => "radio", :value => "expectation1"}/
+      -#= succeed "No" do
+        -#%input{:name => "unpaid", :type => "radio", :value => "expectation2"}/
+      -#%br/
+      -#3)Are you aware of any physical/mental condition that may hamper your work responsibilities?
+      -#%br/
+      -#please list them downif any.
+      -#%br/
+      -#= succeed "Yes" do
+        -#%input{:name => "condition", :type => "radio", :value => "expectation1"}/
+      -#= succeed "No" do
+        -#%input{:name => "condition", :type => "radio", :value => "expectation2"}/
+      -#%br/
+      -#4) Have you ever been treated for alcoholism or drug addiction? Have you used illegal drugs or abused alcohol in the
+      -#%br>/
+      -#past?
+      -#%br/
+      -#If yes please explain.
+      -#%br/
+      -#= succeed "Yes" do
+        -#%input{:name => "alcohol", :type => "radio", :value => "expectation1"}/
+      -#= succeed "No" do
+        -#%input{:name => "alcohol", :type => "radio", :value => "expectation2"}/
+      -#%br/
   / 
   / 
   / 
@@ -473,7 +482,8 @@
           %strong .
       %br/
       %p.agreement
-        %input{:type => "checkbox", :value => ""}/
+        = f.check_box :accept_terms
+        -#%input{:type => "checkbox", :value => ""}/
         %label
           *  I accept the
           %a{:href => "#"} Terms and Conditions
@@ -481,6 +491,48 @@
         = f.submit 'Submit Form »', class: 'button'
 :javascript
   $(function(){
-    $datepicker = $('#applicant_birthdate')
+    $datepicker = $('#applicant_birthdate');
     $datepicker.datepicker({ dateFormat: 'yy-dd-mm'});
+
+    var checkFriendIsSelected = function(target){
+      if(target.val() == 'Friend'){
+        $('#applicant_job_preference_attributes_firstname').show();
+        $('#applicant_job_preference_attributes_lastname').show();
+        $('#job_pref_firstname').show();
+        $('#job_pref_lastname').show();
+      }else{
+        $('#applicant_job_preference_attributes_firstname').hide();
+        $('#applicant_job_preference_attributes_lastname').hide();
+        $('#job_pref_firstname').hide();
+        $('#job_pref_lastname').hide();
+      }
+    }
+
+    var checkIfSpecifyIsChecked = function(target){
+      var bool = target.is(':checked');
+
+
+      if(bool){
+        $('#applicant_job_preference_attributes_source_sub').show();
+        $('#applicant_job_preference_attributes_source').hide();
+        $('#source_label').hide();
+      }else{
+        $('#applicant_job_preference_attributes_source_sub').hide();
+        $('#applicant_job_preference_attributes_source').show();
+        $('#source_label').show();
+      }
+    
+    }
+
+    checkIfSpecifyIsChecked($('#specify_other'))
+
+    checkFriendIsSelected($('#applicant_job_preference_attributes_source'));
+
+    $('#applicant_job_preference_attributes_source').change(function(){
+      checkFriendIsSelected($(this));
+    });
+
+    $('#specify_other').click(function(){
+      checkIfSpecifyIsChecked($(this))
+    });
   })
