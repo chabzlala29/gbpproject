@@ -22,4 +22,8 @@ class Applicant < ActiveRecord::Base
   dragonfly_accessor :avatar
 
   attr_accessor :accept_terms
+
+  def fullname
+    "#{firstname} #{middlename} #{lastname}"
+  end
 end
