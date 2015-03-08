@@ -34,12 +34,12 @@ class ApplicantsController < ApplicationController
     if applicant_params[:accept_terms] == "1"
       filtered_params = set_params
 
-      if @applicant.update(filtered_params) 
-        redirect_to edit_applicant_path(@applicant)
-      end
-     else
-       redirect_to edit_applicant_path(@applicant), flash: { error: 'You must accept terms and conditions' }
-     end
+      @applicant.assign_attributes(filtered_params)
+
+      @valid = @applicant.valid?
+
+      @applicant.save if @valid
+    end
   end
 
   private

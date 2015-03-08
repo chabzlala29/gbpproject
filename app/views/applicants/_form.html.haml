@@ -1,5 +1,5 @@
 -#%form.register{:action => ""}
-= form_for @applicant, html: { class: 'register' } do |f|
+= form_for @applicant, html: { class: 'register' }, remote: true do |f|
   %h1 GBPC Career Application Form
   %fieldset.row1
     %legend

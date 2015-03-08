@@ -1,0 +1,6 @@
+<% if @valid %>
+  alert('Success!');
+  window.location = "<%= edit_applicant_path(@applicant) %>"
+<% else %>
+  alert('You must accept terms.');
+<% end %>
