@@ -6,4 +6,11 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    .bar
+    .banner
+      %center
+        = image_tag 'gbpLogo.png'
+    .bar{:align => "center", :text => ""}
+      %strong Welcome to Global Business Power Corporation Online Career Application System
+    .container
+      = yield

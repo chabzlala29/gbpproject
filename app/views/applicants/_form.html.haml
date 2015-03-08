@@ -1,81 +1,56 @@
-.bar
-.banner
-  %center
-    = image_tag 'gbpLogo.png'
-.bar{:align => "center", :text => ""}
-  %strong Welcome to Global Business Power Corporation Online Career Application System
-%form.register{:action => ""}
+-#%form.register{:action => ""}
+= form_for @applicant, html: { class: 'register' } do |f|
   %h1 GBPC Career Application Form
   %fieldset.row1
     %legend
       Personal Particulars
     %p
-      %label
-        First Name
-      %input{:maxlength => "10", :type => "text"}/
+      = f.label :firstname
+      = f.text_field :firstname
     %p
-      %label
-        Middle Name
-      %input{:maxlength => "10", :type => "text"}/
+      = f.label 'Middle Name'
+      = f.text_field :middlename
     %p
-      %label
-        Last Name
-      %input{:maxlength => "10", :type => "text"}/
+      = f.label 'Last Name'
+      = f.text_field :lastname
     %p
-      %label
-        Nickname
-      %input{:maxlength => "10", :type => "text"}/
+      = f.label :nickname
+      = f.text_field :nickname
     %p
-      %label
-        Birt Date
-      %input{:maxlength => "10", :type => "date"}/
-      %label
-        Birth Place
-      %input{:maxlength => "10", :type => "text"}/
+      = f.label 'Birth Date'
+      = f.text_field :birthdate
+      = f.label 'Birth Place'
+      = f.text_field :birthplace
     %p
-      %label
-        Citizenship
-      %select
-        %option
-        %option{:value => "1"}
-          Filipino
-      %label
-        Civil Status
-      %select
-        %option{:value => "0"}
-        %option{:value => "1"}
-          Single
+      = f.label :citizenship
+      = f.select :citizenship, Applicant::CITIZENSHIP_LISTS
+
+      = f.label :civil_status
+      = f.select :citizenship, civil_statuses
     %p
-      %label
-        Gender
-      %select
-        %option{:value => "0"}
-        %option{:value => "1"}
-          Female
-      %label
-        Religion
-      %input{:maxlength => "10", :type => "text"}/
+      = f.label :gender
+      = f.select :gender, genders
+
+      = f.label :religion
+      = f.text_field :religion
     %p
-      %label
-        Height
-      %input{:maxlength => "5", :type => "number"}/
-      %label
-        Weight
-      %input{:maxlength => "5", :type => "number"}/
+      = f.label :height
+      = f.text_field :height
+
+      = f.label 'Weight in kilograms'
+      = f.text_field :weight
     %p
-      %label
-        Religion
-      %input{:maxlength => "10", :type => "text"}/
-      %label
-        TIN No.
-      %input{:maxlength => "10", :type => "text"}/
+      = f.label :religion
+      = f.text_field :religion
+
+      = f.label 'TIN Number'
+      = f.text_field :tin
     %p
-      %label
-        SSS No.
-      %input{:maxlength => "10", :type => "text"}/
-      %label
-        Philhealth No.
-      %input{:maxlength => "10", :type => "text"}/
+      = f.label 'SSS Number'
+      = f.text_field :sss_number
+
+      = f.label 'Philhealth Number'
+      = f.text_field :philhealth
   %fieldset.row1a
     %p
       %br/
@@ -85,44 +60,41 @@
     #upload
       #pic
         %div{:align => "right"}
-          = image_tag 'upload.png', height: '150px', style: 'float: right; border: 1px solid green', width: '150px', id: 'photo'
-          %input{:name => "picture", :onchange => "readURL(this);", :type => "file"}/
-  %fieldset.row2
-    %legend
-      Address/Contacts
-    %p
-      %label
-        Address*
-      %input.long{:type => "text"}/
-    %p
-      %label
-        Postal Code
-      %input{:maxlength => "10", :type => "text"}/
-    %p
-      %label
-        City *
-      %input.long{:type => "text"}/
-    %p
-      %label
-        Country *
-      %select
-        %option
-        %option{:value => "1"}
-          United States
-    %p
-      %label
-        Telephone no. (Home)
-      %input{:maxlength => "10", :type => "text"}/
-      %label.optional
-        Telephone no. (Office)
-      %input{:maxlength => "10", :type => "text"}/
-    %p
-      %label
-        Mobile no.
-      %input{:maxlength => "10", :type => "text"}/
-      %label.optional
-        Fax
-      %input{:maxlength => "10", :type => "text"}/
+          - if @applicant.avatar
+            = image_tag @applicant.avatar.url, height: '150px', style: 'float: right; border: 1px solid green', width: '150px', id: 'photo'
+          - else
+            = image_tag 'upload.png', height: '150px', style: 'float: right; border: 1px solid green', width: '150px', id: 'photo'
+          = f.file_field :avatar
+          -#%input{:name => "picture", :onchange => "readURL(this);", :type => "file"}/
+  = f.fields_for :address_info do |ai|
+    %fieldset.row2
+      %legend
+        Address/Contacts
+      %p
+        = ai.label :street
+        = ai.text_field :street
+      %p
+        = ai.label :village
+        = ai.text_field :village
+      %p
+        = ai.label :city
+        = ai.text_field :city
+      %p
+        = ai.label :country
+        = ai.select :country, AddressInfo::COUNTRY_LISTS
+      %p
+        = ai.label :phone_home
+        = ai.text_field :phone_home
+
+        %label.optional
+          Telephone no. (Office)
+        = ai.text_field :phone_office
+      %p
+        = ai.label :mobile
+        = ai.text_field :mobile
+
+        = ai.label :fax
+        = ai.text_field :fax
   %fieldset.row3
     %legend
       Educational Attainment
@@ -506,4 +478,9 @@
           *  I accept the
           %a{:href => "#"} Terms and Conditions
       %div
-        %button.button Submit Form »
+        = f.submit 'Submit Form »', class: 'button'
+:javascript
+  $(function(){
+    $datepicker = $('#applicant_birthdate')
+    $datepicker.datepicker({ dateFormat: 'yy-dd-mm'});
+  })
