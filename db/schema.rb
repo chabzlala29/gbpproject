@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308135936) do
+ActiveRecord::Schema.define(version: 20150308140448) do
 
   create_table "address_infos", force: :cascade do |t|
     t.integer  "applicant_id"
@@ -59,5 +59,33 @@ ActiveRecord::Schema.define(version: 20150308135936) do
 
   add_index "applicants", ["email"], name: "index_applicants_on_email", unique: true
   add_index "applicants", ["reset_password_token"], name: "index_applicants_on_reset_password_token", unique: true
+
+  create_table "educations", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.integer  "level"
+    t.string   "institution"
+    t.string   "field"
+    t.string   "grade"
+    t.string   "awards"
+    t.string   "location"
+    t.string   "major"
+    t.integer  "graduation_year", limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "families", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.integer  "relationship"
+    t.string   "address"
+    t.string   "company"
+    t.date     "dob"
+    t.string   "position"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
 end
