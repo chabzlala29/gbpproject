@@ -49,3 +49,4 @@ gem 'devise', git: 'git@github.com:plataformatec/devise.git', branch: 'lm-rails-
 
 gem 'dragonfly'
 gem 'jquery-ui-rails'
+gem 'rails_admin'
