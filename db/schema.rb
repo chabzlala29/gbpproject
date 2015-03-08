@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308140448) do
+ActiveRecord::Schema.define(version: 20150308141920) do
 
   create_table "address_infos", force: :cascade do |t|
     t.integer  "applicant_id"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 20150308140448) do
     t.string   "mobile"
     t.string   "phone_office"
     t.string   "fax"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.integer  "question_id"
+    t.boolean  "answer"
+    t.text     "explanation"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -55,10 +64,35 @@ ActiveRecord::Schema.define(version: 20150308140448) do
     t.decimal  "weight"
     t.string   "tin"
     t.string   "philhealth"
+    t.string   "availability_status"
+    t.string   "work_experience"
   end
 
   add_index "applicants", ["email"], name: "index_applicants_on_email", unique: true
   add_index "applicants", ["reset_password_token"], name: "index_applicants_on_reset_password_token", unique: true
+
+  create_table "certificates", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.string   "name"
+    t.integer  "year"
+    t.string   "grade"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "character_preferences", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.string   "firstname"
+    t.string   "middlename"
+    t.string   "lastname"
+    t.integer  "number_of_years"
+    t.string   "address"
+    t.string   "contact"
+    t.string   "company"
+    t.string   "position"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "educations", force: :cascade do |t|
     t.integer  "applicant_id"
@@ -69,9 +103,9 @@ ActiveRecord::Schema.define(version: 20150308140448) do
     t.string   "awards"
     t.string   "location"
     t.string   "major"
-    t.integer  "graduation_year", limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "graduation_year"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "families", force: :cascade do |t|
@@ -86,6 +120,42 @@ ActiveRecord::Schema.define(version: 20150308140448) do
     t.string   "position"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "job_preferences", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.string   "first_pref"
+    t.string   "second_pref"
+    t.string   "third_pref"
+    t.string   "source"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.string   "language"
+    t.integer  "spoken"
+    t.integer  "written"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text     "question"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.integer  "applicant_id"
+    t.string   "skill"
+    t.integer  "years_of_experience"
+    t.integer  "proficiency"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
 end

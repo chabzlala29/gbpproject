@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  skill: MyString
+  years_of_experience: 1
+  proficiency: 1
+
+two:
+  skill: MyString
+  years_of_experience: 1
+  proficiency: 1

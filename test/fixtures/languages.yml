@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  language: MyString
+  spoken: 1
+  written: 1
+
+two:
+  language: MyString
+  spoken: 1
+  written: 1

@@ -9,7 +9,7 @@ class CreateEducations < ActiveRecord::Migration
       t.string :awards
       t.string :location
       t.string :major
-      t.integer :graduation_year, limit: 4
+      t.integer :graduation_year
 
       t.timestamps null: false
     end

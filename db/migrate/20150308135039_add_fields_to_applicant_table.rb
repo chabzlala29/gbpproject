@@ -15,5 +15,7 @@ class AddFieldsToApplicantTable < ActiveRecord::Migration
     add_column :applicants, :weight, :decimal
     add_column :applicants, :tin, :string
     add_column :applicants, :philhealth, :string
+    add_column :applicants, :availability_status, :string
+    add_column :applicants, :work_experience, :string
   end
 end
