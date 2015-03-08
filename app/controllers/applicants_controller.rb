@@ -30,7 +30,7 @@ class ApplicantsController < ApplicationController
       filtered_params = set_params
 
       if @applicant.update(filtered_params) 
-        redirect_to edit_applicant_path(@applicant)
+        redirect_to edit_applicant_path(@applicant), flash: { prompt: 'Process completed. Just wait.' }
       end
      else
        redirect_to edit_applicant_path(@applicant), flash: { error: 'You must accept terms and conditions' }
