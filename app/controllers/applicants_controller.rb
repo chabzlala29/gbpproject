@@ -34,7 +34,6 @@ class ApplicantsController < ApplicationController
     if applicant_params[:accept_terms] == "1"
       filtered_params = set_params
 
-<<<
       @applicant.assign_attributes(filtered_params)
 
       @valid = @applicant.valid?
