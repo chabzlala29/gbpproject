@@ -1,7 +1,12 @@
 class ApplicantsController < ApplicationController
   before_action :authenticate_applicant!
 
+  before_action :get_applicant, only: [:show, :edit, :update]
+
   def index
+  end
+
+  def show
   end
 
   def edit
@@ -64,6 +69,10 @@ class ApplicantsController < ApplicationController
     end
 
     hash
+  end
+
+  def get_applicant
+    @applicant = Applicant.find(params[:id])
   end
 end
 
