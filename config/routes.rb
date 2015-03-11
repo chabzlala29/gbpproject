@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   get 'edit_profile' => 'applicants#edit'
   patch 'update_profile' => 'applicants#update'
 
-  root to: 'welcome#index'
+  root to: 'applicants#edit'
 end

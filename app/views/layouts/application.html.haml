@@ -1,11 +1,11 @@
 !!!
 %html.cufon-active.cufon-ready
   %head
-    %title iTrabaho.com - The first SMS-based jobsite in the Philippines
+    %title Gbpproject
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    <link href="//assets2.itrabaho.com/assets/application-b67704c6d5929cdd1836e9721b8a12c2.css" media="screen" rel="stylesheet" type="text/css">
     = csrf_meta_tags
-    %link{:href => "//assets2.itrabaho.com/assets/application-b67704c6d5929cdd1836e9721b8a12c2.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
   %body.webkit
     #cboxOverlay{:style => "display: none;"}
     #colorbox{:style => "padding-bottom: 42px; padding-right: 42px; display: none;"}
@@ -38,55 +38,28 @@
         .packer
           #quick_login
           #header_menu
-            #welcome_user
-              %span.left_end
-              %span.mid.cufon
-                %cufon.cufon.cufon-canvas{:alt => "Hi ", :style => "width: 20px; height: 14px;"}
-                  %canvas{:height => "16", :style => "width: 30px; height: 16px; top: -2px; left: 0px;", :width => "30"}
-                  %cufontext Hi
-                %cufon.cufon.cufon-canvas{:alt => "chabzpobre!", :style => "width: 87px; height: 14px;"}
-                  %canvas{:height => "16", :style => "width: 97px; height: 16px; top: -2px; left: 0px;", :width => "97"}
-                  %cufontext chabzpobre!
-              %span.right_end
+            - if applicant_signed_in?
+              #welcome_user
+                %span.left_end
+                %span.mid.cufon
+                  %strong
+                    Hi
+                    = current_applicant.firstname
+                %span.right_end
             %ul
               %li
-                %a{:href => "#"} Jobs
+                = link_to 'My Resume', edit_profile_path
               %li
-                %a{:href => "#"} My Resume
-              %li
-                %a{:href => "#"}
-                  Messages
-                  %span.new_messages{:style => "display: none;"}
-              %li
-                %a{:href => "#"} My Account
-              %li
-                %a{:href => "#"} Logout
+                = link_to 'Logout', destroy_applicant_session_path, method: :delete
       #header.packer
         #itrabaho_logo
           %a{:alt => "iTrabaho", :href => "http://itrabaho.com/"}
             %img{:alt => "Itrabaho_logo", :src => "//assets3.itrabaho.com/assets/header/itrabaho_logo-4969ccccfdca6564161499d6009877ae.png"}/
-        #ads
+        .container
+          - flash.each do |k,v|
+            %div{ id: "#{k}"}
+              %h3= v
       = yield
-%footer
-  #footer.packer
-    %ul
-      %li
-        %a{:href => "http://itrabaho.wordpress.com", :target => "_blank"} Blog
-      %li
-        %a{:href => "http://facebook.com/itrabaho", :target => "_blank"} Facebook
-      %li
-        %a{:href => "https://plus.google.com/113033847743521713874", :rel => "publisher", :target => "_blank"} Google+
-      %li
-        %a{:href => "/home/ads"}
-          %span.translation_missing{:title => "translation missing: en.footer_nav.ads"} Ads
-      %li
-        %a{:href => "/home/partners"} Partners
-      %li
-        %a{:href => "/home/privacy"} Privacy
-      %li
-        %a{:href => "/home/tos"} Terms
-      %li
-        %a{:href => "/home/faq"} FAQ
-    %p#powered_by
-      %a{:href => "http://mixpanel.com/f/partner"}
-        %img{:alt => "Real Time Web Analytics", :src => "//mixpanel.com/site_media/images/partner/badge_light.png"}/
+%footer{style: 'margin-top: 15px;'}
+  .container.text-center{ style: 'color:white'}
+    %p.credit All Rights Reserved. Gbpproject 2015.

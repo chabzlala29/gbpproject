@@ -37,6 +37,7 @@ class ApplicantsController < ApplicationController
 
       @applicant.save if @valid
     end
+
   end
 
   private

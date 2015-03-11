@@ -1,0 +1,39 @@
+!!!
+%html
+  %head
+    %title Gbpproject
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body.webkit.devise
+    %header
+      #notification.notify
+      #top_bar
+        .packer
+          #quick_login
+          #header_menu
+            - if applicant_signed_in?
+              #welcome_user
+                %span.left_end
+                %span.mid.cufon
+                  %strong
+                    Hi
+                    = current_applicant.firstname
+                %span.right_end
+            %ul
+              %li
+                = link_to 'My Resume', edit_profile_path
+              - if applicant_signed_in?
+                %li
+                  = link_to 'Logout', destroy_applicant_session_path, method: :delete
+      #header.packer
+        #itrabaho_logo
+          %a{:alt => "iTrabaho", :href => "http://itrabaho.com/"}
+            %img{:alt => "Itrabaho_logo", :src => "//assets3.itrabaho.com/assets/header/itrabaho_logo-4969ccccfdca6564161499d6009877ae.png"}/
+      .container
+        .row.sign-in-wrapper
+          .col-md-8.col-md-offset-2
+            = yield
+      %footer
+        .container.text-center
+          %p.credit All Rights Reserved. Gbpproject 2015.

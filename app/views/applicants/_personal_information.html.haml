@@ -13,7 +13,7 @@
     = f.label :nickname
     = f.text_field :nickname
 
-  .form-vertical.left{ style: 'margin-left: 80px;'}
+  .form-vertical.left{ style: 'margin-left: 10px;'}
     = f.label 'Birth Date'
     = f.text_field :birthdate
     = f.label 'Birth Place'
@@ -29,7 +29,7 @@
 
     = f.label :religion
     = f.text_field :religion
-  .form-vertical.left{:style => "margin-left: 80px;"}
+  .form-vertical.left{:style => "margin-left: 10px;"}
     = f.label :height
     = f.text_field :height
 
@@ -48,7 +48,7 @@
     = f.label 'Philhealth Number'
     = f.text_field :philhealth
 
-  .form-vertical.left{:style => "margin-left: 80px;"}
+  .form-vertical.left{:style => "margin-left: 10px;"}
     = f.label 'Select Profile Photo to upload:'
     - if @applicant.avatar
       = image_tag @applicant.avatar.url, height: '150px', style: 'float: right; border: 1px solid green', width: '150px', id: 'photo'
