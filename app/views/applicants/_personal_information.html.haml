@@ -1,0 +1,56 @@
+%h1 Personal Information
+.sub_section.clearfix
+  .form-vertical.left
+    = f.label "First Name"
+    = f.text_field :firstname
+
+    = f.label 'Middle Name'
+    = f.text_field :middlename
+
+    = f.label 'Last Name'
+    = f.text_field :lastname
+
+    = f.label :nickname
+    = f.text_field :nickname
+  .form-vertical.left{ style: 'margin-left: 80px;'}
+    = f.label 'Birth Date'
+    = f.text_field :birthdate
+    = f.label 'Birth Place'
+    = f.text_field :birthplace
+    = f.label :citizenship
+    = f.select :citizenship, Applicant::CITIZENSHIP_LISTS
+
+    = f.label :civil_status
+    = f.select :citizenship, civil_statuses
+
+    = f.label :gender
+    = f.select :gender, genders
+
+    = f.label :religion
+    = f.text_field :religion
+  .form-vertical.left{:style => "margin-left: 80px;"}
+    = f.label :height
+    = f.text_field :height
+
+    = f.label 'Weight in kilograms'
+    = f.text_field :weight
+
+    = f.label :religion
+    = f.text_field :religion
+
+    = f.label 'TIN Number'
+    = f.text_field :tin
+
+    = f.label 'SSS Number'
+    = f.text_field :sss_number
+
+    = f.label 'Philhealth Number'
+    = f.text_field :philhealth
+
+  .form-vertical.left{:style => "margin-left: 80px;"}
+    = f.label 'Select Profile Photo to upload:'
+    - if @applicant.avatar
+      = image_tag @applicant.avatar.url, height: '150px', style: 'float: right; border: 1px solid green', width: '150px', id: 'photo'
+    - else
+      = image_tag 'upload.png', height: '150px', style: 'float: right; border: 1px solid green', width: '150px', id: 'photo'
+    = f.file_field :avatar

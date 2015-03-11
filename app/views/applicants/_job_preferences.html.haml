@@ -1,0 +1,32 @@
+%h1 Job Preferences
+= f.fields_for :job_preference do |job|
+  .sub_section.clearfix
+    .form-vertical.left-side
+      %label
+        1st Preference
+      = job.text_field :first_pref
+
+      %label
+        2nd Preference
+      = job.text_field :second_pref
+
+      %label.optional
+        3rd Preference
+      = job.text_field :third_pref
+
+    .form-vertical.left-side
+      %label#source_label
+        Source of application
+      = job.select :source, JobPreference::SOURCE_LISTS
+
+      %label.optional
+        Specify if others
+      = check_box_tag :specify_other
+      = job.text_field :source_sub, style: 'display: none'
+
+      %label#job_pref_firstname{style: "display:none"}
+        First Name
+      = job.text_field :firstname, style: 'display: none'
+      %label#job_pref_lastname{style: 'display:none'}
+        Last Name
+      = job.text_field :lastname, style: 'display: none'

@@ -1,0 +1,28 @@
+%h1 Address and Contact Information
+= f.fields_for :address_info do |ai|
+  .sub_section.clearfix
+    .form-vertical.left-side
+      = ai.label :street
+      = ai.text_field :street
+
+      = ai.label :village
+      = ai.text_field :village
+
+      = ai.label :city
+      = ai.text_field :city
+
+      = ai.label :country
+      = ai.select :country, AddressInfo::COUNTRY_LISTS
+
+    .form-vertical.left-side
+      = ai.label :phone_home
+      = ai.text_field :phone_home
+
+      = ai.label 'Telephone no. (Office)'
+      = ai.text_field :phone_office
+
+      = ai.label :mobile
+      = ai.text_field :mobile
+
+      = ai.label :fax
+      = ai.text_field :fax
