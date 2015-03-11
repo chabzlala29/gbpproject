@@ -1,1 +1,12 @@
-= render 'form'
+.mid
+  .packer
+    %ul.resume_type_selection_tabs
+      %li
+        %a.selected{:href => "/resume/profile"} Build Resume
+    #content_body.tabbed
+      #edit_resume
+        = render 'form'
+:javascript
+  $(function(){
+    Form.init(); 
+  })

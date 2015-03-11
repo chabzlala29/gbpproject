@@ -1,26 +1,6 @@
 class ApplicantsController < ApplicationController
   before_action :authenticate_applicant!
-
-  def draft_page
-    @applicant = current_applicant
-    @questions = Question.all
-
-    if @applicant.address_info.nil?
-      @applicant.build_address_info
-    end
-
-    @questions.each do |q|
-      if @applicant.answers.where(question: q).empty?
-        @applicant.answers.new(question: q)
-      end
-    end
-
-    if @applicant.job_preference.nil?
-      @applicant.build_job_preference
-    end
-
-    render layout: 'draft'
-  end
+  skip_before_action :verify_authenticity_token
 
   def show
     @applicant = current_applicant
