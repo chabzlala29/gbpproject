@@ -50,3 +50,5 @@ gem 'devise', git: 'git@github.com:plataformatec/devise.git', branch: 'lm-rails-
 gem 'dragonfly'
 gem 'jquery-ui-rails'
 gem 'rails_admin'
+
+gem 'bootstrap-sass', '~> 3.3.3'
