@@ -1,5 +1,4 @@
--#%form.register{:action => ""}
-= form_for @applicant, html: { class: 'register' }, remote: true do |f|
+= form_for @applicant, url: update_profile_path, html: { class: 'register' }, remote: true do |f|
   %h1 GBPC Career Application Form
   %fieldset.row1
     %legend
@@ -136,8 +135,7 @@
         Honors/ Awards Received
       %input{:maxlength => "10", :type => "text"}/
     %p
-      %button.edit.button Add
-      %button.add.button Edit
+      %button.add.button Add
       %button.delete.button Delete
   / 
   / 
@@ -180,8 +178,7 @@
         Position
       %input{:maxlength => "10", :type => "text"}/
     %p
-      %button.edit.button Add
-      %button.add.button Edit
+      %button.add.button Add
       %button.delete.button Delete
   / 
   / ccccccccccccccccccccccccccccccccccccccc
@@ -201,8 +198,7 @@
       %label Written
       %input.short{:type => "text"}/
     %p
-      %button.edit.button Add
-      %button.add.button Edit
+      %button.add.button Add
       %button.delete.button Delete
   %fieldset.row5
     %legend
@@ -226,8 +222,7 @@
         %br/
       = succeed "the" do
         %br/
-    %button.edit.button Add
-    %button.add.button Edit
+    %button.add.button Add
     %button.delete.button Delete
   %fieldset.row6
     %legend
@@ -245,8 +240,7 @@
       %label Grade
       %input.short{:type => "text"}/
     %p
-      %button.edit.button Add
-      %button.add.button Edit
+      %button.add.button Add
       %button.delete.button Delete
   / 
   = f.fields_for :job_preference do |job|
@@ -319,8 +313,7 @@
         Position
       %input{:maxlength => "10", :type => "text"}/
     %p
-      %button.edit.button Add
-      %button.add.button Edit
+      %button.add.button Add
       %button.delete.button Delete
   / 
   / 
@@ -422,49 +415,6 @@
           = answer.check_box :answer
           %span
             Check if Yes
-      -#- @questions.each_with_index do |q, i|
-        -#%div
-          -#= "#{i + 1})"
-          -#= q.question
-
-          -#%br
-          -#= check_box_tag 'accept'
-          -#%span
-            -#Check if Yes
-      -#2)Do you have any existing or previous (unpaid) financial obligation arising from an employer - employee relation,
-      -#%br/
-      -#credit card transaction, load obligation, contractual obligation, and/or other transaction of a similar nature?
-      -#%br/
-      -#If yes, please enumerate.
-      -#%br/
-      -#= succeed "Yes" do
-        -#%input{:name => "unpaid", :type => "radio", :value => "expectation1"}/
-      -#= succeed "No" do
-        -#%input{:name => "unpaid", :type => "radio", :value => "expectation2"}/
-      -#%br/
-      -#3)Are you aware of any physical/mental condition that may hamper your work responsibilities?
-      -#%br/
-      -#please list them downif any.
-      -#%br/
-      -#= succeed "Yes" do
-        -#%input{:name => "condition", :type => "radio", :value => "expectation1"}/
-      -#= succeed "No" do
-        -#%input{:name => "condition", :type => "radio", :value => "expectation2"}/
-      -#%br/
-      -#4) Have you ever been treated for alcoholism or drug addiction? Have you used illegal drugs or abused alcohol in the
-      -#%br>/
-      -#past?
-      -#%br/
-      -#If yes please explain.
-      -#%br/
-      -#= succeed "Yes" do
-        -#%input{:name => "alcohol", :type => "radio", :value => "expectation1"}/
-      -#= succeed "No" do
-        -#%input{:name => "alcohol", :type => "radio", :value => "expectation2"}/
-      -#%br/
-  / 
-  / 
-  / 
   %fieldset.row8
     %legend
       Terms and Conditions
@@ -491,48 +441,5 @@
         = f.submit 'Submit Form »', class: 'button'
 :javascript
   $(function(){
-    $datepicker = $('#applicant_birthdate');
-    $datepicker.datepicker({ dateFormat: 'yy-dd-mm'});
-
-    var checkFriendIsSelected = function(target){
-      if(target.val() == 'Friend'){
-        $('#applicant_job_preference_attributes_firstname').show();
-        $('#applicant_job_preference_attributes_lastname').show();
-        $('#job_pref_firstname').show();
-        $('#job_pref_lastname').show();
-      }else{
-        $('#applicant_job_preference_attributes_firstname').hide();
-        $('#applicant_job_preference_attributes_lastname').hide();
-        $('#job_pref_firstname').hide();
-        $('#job_pref_lastname').hide();
-      }
-    }
-
-    var checkIfSpecifyIsChecked = function(target){
-      var bool = target.is(':checked');
-
-
-      if(bool){
-        $('#applicant_job_preference_attributes_source_sub').show();
-        $('#applicant_job_preference_attributes_source').hide();
-        $('#source_label').hide();
-      }else{
-        $('#applicant_job_preference_attributes_source_sub').hide();
-        $('#applicant_job_preference_attributes_source').show();
-        $('#source_label').show();
-      }
-    
-    }
-
-    checkIfSpecifyIsChecked($('#specify_other'))
-
-    checkFriendIsSelected($('#applicant_job_preference_attributes_source'));
-
-    $('#applicant_job_preference_attributes_source').change(function(){
-      checkFriendIsSelected($(this));
-    });
-
-    $('#specify_other').click(function(){
-      checkIfSpecifyIsChecked($(this))
-    });
+    Form.init();
   })

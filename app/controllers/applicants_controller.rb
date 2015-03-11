@@ -2,15 +2,12 @@ class ApplicantsController < ApplicationController
   before_action :authenticate_applicant!
 
 
-  def index
-  end
-
   def show
-    @applicant = Applicant.find(params[:id])
+    @applicant = current_applicant
   end
 
   def edit
-    @applicant = Applicant.find(params[:id])
+    @applicant = current_applicant
     @questions = Question.all
 
     if @applicant.address_info.nil?
@@ -29,7 +26,7 @@ class ApplicantsController < ApplicationController
   end
 
   def update
-    @applicant = Applicant.find(params[:id])
+    @applicant = current_applicant
 
     if applicant_params[:accept_terms] == "1"
       filtered_params = set_params
