@@ -12,6 +12,8 @@ class Applicants::RegistrationsController < Devise::RegistrationsController
 
     end
 
-    redirect_to edit_applicant_path(resource)
+    sign_in(:applicant, resource)
+
+    redirect_to edit_profile_path, flash: nil, notice: nil
   end
 end
