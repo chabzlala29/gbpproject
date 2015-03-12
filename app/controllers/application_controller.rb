@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_devise_permitted_parameters, if: :devise_controller?
+  before_action :mailer_set_url_options
 
   layout :layout_by_resource
 
@@ -29,6 +30,10 @@ class ApplicationController < ActionController::Base
         |u| u.permit(registration_params) 
       }
     end
+  end
+
+  def mailer_set_url_options
+    ActionMailer::Base.default_url_options[:host] = request.host_with_port
   end
 
 end
