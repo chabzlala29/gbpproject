@@ -1,0 +1,10 @@
+.listing_item
+  %h3= education.institution
+  %h5= education.level.titleize
+  %h5= [education.field, education.major].compact.join(" - ")
+  %h5= education.graduation_year
+  %p= education.awards
+  .actions
+    = link_to 'Edit', edit_education_path(education), remote: true
+    \  |  
+    = link_to 'Delete', education_path(education), method: :delete, remote: true, onclick: 'return confirm("Are you sure?")'

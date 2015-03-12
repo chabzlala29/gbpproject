@@ -9,6 +9,8 @@ class ApplicantsController < ApplicationController
   def edit
     @applicant = current_applicant
     @questions = Question.all
+    @educations = current_applicant.educations
+    @families = current_applicant.families
 
     if @applicant.address_info.nil?
       @applicant.build_address_info

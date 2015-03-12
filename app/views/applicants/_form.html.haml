@@ -1,18 +1,27 @@
-= form_for @applicant, url: update_profile_path, multipart: true, remote: true do |f|
+= form_for @applicant, url: update_profile_path, html: { id: 'applicant-form' }, multipart: true, remote: true do |f|
   = render 'applicants/personal_information', f: f
   = render 'applicants/address_contacts', f: f
-  = render 'applicants/education', f: f
-  = render 'applicants/family_background', f: f
-  = render 'applicants/languages', f: f
-  = render 'applicants/specialized_skills', f: f
-  = render 'applicants/certificates', f: f
-  = render 'applicants/character_references', f: f
   = render 'applicants/job_preferences', f: f
   = render 'applicants/additional_information', f: f
+  = f.check_box :accept_terms, style: 'display: none'
 
-  %hr.large/
-  = f.check_box :accept_terms
-  %label
-    *  I accept the
-    %a{:href => "#"} Terms and Conditions
-  = f.submit 'Create Resume', class: 'btn btn-large btn-primary', style: 'float:right'
+= render 'applicants/education'
+= render 'applicants/family_background'
+= render 'applicants/languages'
+= render 'applicants/specialized_skills'
+= render 'applicants/certificates'
+= render 'applicants/character_references'
+
+%hr.large/
+= check_box_tag :accept_terms
+%label
+  *  I accept the
+  %a{:href => "#"} Terms and Conditions
+= button_tag 'Create Resume', id: 'submit-applicant-form', class: 'btn btn-large btn-primary', style: 'float:right'
+
+:javascript
+  $(function(){
+    $('#submit-applicant-form').click(function(){
+      $('#applicant-form').submit();
+    })
+  })

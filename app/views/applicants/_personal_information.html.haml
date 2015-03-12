@@ -15,7 +15,7 @@
 
   .form-vertical.left{ style: 'margin-left: 10px;'}
     = f.label 'Birth Date'
-    = f.text_field :birthdate
+    = f.text_field :birthdate, class: 'datepicker'
     = f.label 'Birth Place'
     = f.text_field :birthplace
     = f.label :citizenship

@@ -1,0 +1,9 @@
+.listing_item
+  %h3= family.fullname
+  %h5= family.relationship.titleize
+  %h5= family.company
+
+  .actions
+    = link_to 'Edit', edit_family_path(family), remote: true
+    \  |  
+    = link_to 'Delete', family_path(family), method: :delete, remote: true, onclick: 'return confirm("Are you sure?")'

@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   patch 'update_profile' => 'applicants#update'
 
   root to: 'applicants#edit'
+
+  resources :educations, only: [:edit, :update, :create, :destroy]
+  resources :families, only: [:edit, :update, :create, :destroy]
 end

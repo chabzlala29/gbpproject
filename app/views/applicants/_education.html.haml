@@ -1,36 +1,13 @@
-%a#new_education.header_link.btn.btn-mini.btn-primary{:href => "#", data: { 'toggle' => 'modal', 'target' => '#myModal' } }
+%a#new_education.header_link.btn.btn-mini.btn-primary{:href => "#", data: { 'toggle' => 'modal', 'target' => '#education-modal' }, style: 'position:relative; bottom:20px' }
   %i.icon-plus-sign.icon-white
   Add a School
 %h1 Education
 #education_list
   .sub_section.clearfix
+    %div.educations-list-wrapper.left-side
+      = render @educations
     .tips
       %h4 Tips :
       %p List the schools you attended including vocational or certificate courses. Also, don't forget to include any honors or special awards you received.
-
 / Modal
-#myModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %h4#myModalLabel.modal-title Modal title
-      .modal-body
-        .form-group
-          %label{:for => "exampleInputEmail1"} Email address
-          %input#exampleInputEmail1.form-control{:placeholder => "Enter email", :type => "email"}/
-        .form-group
-          %label{:for => "exampleInputPassword1"} Password
-          %input#exampleInputPassword1.form-control{:placeholder => "Password", :type => "password"}/
-        .form-group
-          %label{:for => "exampleInputFile"} File input
-          %input#exampleInputFile{:type => "file"}/
-          %p.help-block Example block-level help text here.
-        .checkbox
-          %label
-            %input{:type => "checkbox"}/
-            Check me out
-      .modal-footer
-        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
-        %button.btn.btn-primary{:type => "button"} Save changes
+= render 'educations/form', education: current_applicant.educations.new

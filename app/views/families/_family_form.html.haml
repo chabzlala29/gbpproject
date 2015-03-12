@@ -1,0 +1,25 @@
+= form_for family, remote: true do |f|
+  .modal-body
+    .form-group
+      = f.label :firstname
+      = f.text_field :firstname, class: 'form-control'
+    .form-group
+      = f.label :middlename
+      = f.text_field :middlename, class: 'form-control'
+    .form-group
+      = f.label :lastname
+      = f.text_field :lastname, class: 'form-control'
+    .form-group
+      = f.label :relationship
+      = f.select :relationship, make_options(Family.relationships), class: 'form-control'
+    .form-group
+      = f.label :address
+      = f.text_field :address, class: 'form-control'
+    .form-group
+      = f.label :company
+      = f.text_field :company, class: 'form-control'
+    .form-group
+      = f.label 'Date of Birth'
+      = f.text_field :dob, class: 'form-control datepicker'
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary'
