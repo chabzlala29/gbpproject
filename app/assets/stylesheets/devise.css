@@ -1,0 +1,28 @@
+
+.devise{
+height: 100%;
+  background: #63af60;
+
+}
+
+.devise footer{
+ position: relative;
+    bottom: 0px;
+
+}
+
+.devise #header{
+  margin: 0 auto;
+
+
+}
+
+#gbp_logo{
+  width: 45%;
+  margin-left: 40%;
+}
+
+#gbp_logo img{
+	width: inherit;
+
+} 

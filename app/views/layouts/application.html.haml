@@ -53,8 +53,7 @@
                 = link_to 'Logout', destroy_applicant_session_path, method: :delete
       #header.packer
         #itrabaho_logo
-          %a{:alt => "iTrabaho", :href => "http://itrabaho.com/"}
-            %img{:alt => "Itrabaho_logo", :src => "//assets3.itrabaho.com/assets/header/itrabaho_logo-4969ccccfdca6564161499d6009877ae.png"}/
+          = image_tag 'gbpLogo.png'
         .container
           - flash.each do |k,v|
             %div{ id: "#{k}"}
