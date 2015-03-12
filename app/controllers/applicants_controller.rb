@@ -7,10 +7,7 @@ class ApplicantsController < ApplicationController
   end
 
   def edit
-    @applicant = current_applicant
-    @questions = Question.all
-    @educations = current_applicant.educations
-    @families = current_applicant.families
+    load_nested_resources
 
     if @applicant.address_info.nil?
       @applicant.build_address_info
@@ -43,6 +40,14 @@ class ApplicantsController < ApplicationController
   end
 
   private
+
+  def load_nested_resources
+    @applicant = current_applicant
+    @questions = Question.all
+    @educations = current_applicant.educations
+    @families = current_applicant.families
+    @languages = current_applicant.languages
+  end
 
   def applicant_params
     params.require(:applicant).permit(:accept_terms, :firstname, :middlename, :lastname, :nickname, :birthdate, :citizenship, :gender,

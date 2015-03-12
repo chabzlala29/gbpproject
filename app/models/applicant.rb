@@ -16,6 +16,7 @@ class Applicant < ActiveRecord::Base
   has_one :job_preference
   has_many :educations
   has_many :families
+  has_many :languages
 
   accepts_nested_attributes_for :address_info, :answers, :job_preference
 

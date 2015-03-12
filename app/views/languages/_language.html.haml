@@ -1,0 +1,18 @@
+.listing_item
+  %h3
+    Language: 
+    %span{style: 'font-weight: normal'}
+      = language.language
+  %h3
+    Spoken:
+    %span{style: 'font-weight: normal'}
+      = set_level(language.spoken)
+  %h3
+    Written:
+    %span{style: 'font-weight: normal'}
+      = set_level(language.written)
+
+  .actions
+    = link_to 'Edit', edit_language_path(language), remote: true
+    \  |  
+    = link_to 'Delete', language_path(language), method: :delete, remote: true, onclick: 'return confirm("Are you sure?")'

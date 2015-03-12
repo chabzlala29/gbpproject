@@ -10,4 +10,8 @@ module ApplicationHelper
   def make_options(object)
     object.map{|k,v| [k.titleize, k]}
   end
+
+  def set_level(level)
+    Language.levels.select{|k,v| v == level.to_i }.first.first.titleize
+  end
 end

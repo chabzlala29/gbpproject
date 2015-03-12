@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   resources :educations, only: [:edit, :update, :create, :destroy]
   resources :families, only: [:edit, :update, :create, :destroy]
+  resources :languages, only: [:edit, :update, :create, :destroy]
 end

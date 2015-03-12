@@ -1,0 +1,13 @@
+= form_for language, remote: true do |f|
+  .modal-body
+    .form-group
+      = f.label :language
+      = f.select :language, Applicant::CITIZENSHIP_LISTS, class: 'form-control'
+    .form-group
+      = f.label :spoken
+      = f.select :spoken, make_options(Language.levels), class: 'form-control'
+    .form-group
+      = f.label :written
+      = f.select :written, make_options(Language.levels), class: 'form-control'
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary'
