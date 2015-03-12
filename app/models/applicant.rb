@@ -14,7 +14,7 @@ class Applicant < ActiveRecord::Base
   has_one :address_info
   has_one :job_preference
 
-  [:answers, :educations, :families, :languages, :skills].each do |resource|
+  [:answers, :educations, :families, :languages, :skills, :certificates].each do |resource|
     has_many resource
   end
 

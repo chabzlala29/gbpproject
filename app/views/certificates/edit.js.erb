@@ -1,0 +1,2 @@
+$('#certificate-modal').find('.modal-content').html("<%= j render(partial: 'certificates/certificate_form', locals: { certificate: @certificate}) %>")
+$('#certificate-modal').modal('show');

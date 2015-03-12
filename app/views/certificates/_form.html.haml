@@ -1,0 +1,9 @@
+#certificate-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "certificate-modal-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#certificate-modal-label.modal-title Certificate Form
+
+      = render 'certificates/certificate_form', certificate: certificate

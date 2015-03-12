@@ -14,4 +14,8 @@ module ApplicationHelper
   def set_level(level)
     Language.levels.select{|k,v| v == level.to_i }.first.first.titleize
   end
+
+  def year_choices
+    ((Date.today - 30.years).year..Date.today.year).to_a
+  end
 end

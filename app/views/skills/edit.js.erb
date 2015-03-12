@@ -1,2 +1,2 @@
-$('#skill-modal').find('.modal-content').html("<%= j render(partial: 'skills/language_form', locals: { language: @skill}) %>")
+$('#skill-modal').find('.modal-content').html("<%= j render(partial: 'skills/skill_form', locals: { skill: @skill}) %>")
 $('#skill-modal').modal('show');
