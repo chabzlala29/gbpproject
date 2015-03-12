@@ -1,0 +1,23 @@
+.listing_item
+  %h3= character_preference.fullname
+  %h3
+    Number of Years:
+    %span{style: 'font-weight: normal'}
+      = pluralize(character_preference.number_of_years, 'year')
+  %h3
+    Company:
+    %span{style: 'font-weight: normal'}
+      = character_preference.company
+  %h3
+    Position:
+    %span{style: 'font-weight: normal'}
+      = character_preference.position
+  %h3
+    Contact:
+    %span{style: 'font-weight: normal'}
+      = character_preference.contact
+
+  .actions
+    = link_to 'Edit', edit_character_preference_path(character_preference), remote: true
+    \  |  
+    = link_to 'Delete', character_preference_path(character_preference), method: :delete, remote: true, onclick: 'return confirm("Are you sure?")'

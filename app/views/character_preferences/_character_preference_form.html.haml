@@ -1,0 +1,28 @@
+= form_for character_preference, remote: true do |f|
+  .modal-body
+    .form-group
+      = f.label :firstname
+      = f.text_field :firstname, class: 'form-control'
+    .form-group
+      = f.label :middlename
+      = f.text_field :middlename, class: 'form-control'
+    .form-group
+      = f.label :lastname
+      = f.text_field :lastname, class: 'form-control'
+    .form-group
+      = f.label :company
+      = f.text_field :company, class: 'form-control'
+    .form-group
+      = f.label :number_of_years
+      = f.select :number_of_years, (1..10).to_a, class: 'form-control'
+    .form-group
+      = f.label :address
+      = f.text_field :address, class: 'form-control'
+    .form-group
+      = f.label :contact
+      = f.text_field :contact, class: 'form-control'
+    .form-group
+      = f.label :position
+      = f.text_field :position, class: 'form-control'
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary'

@@ -1,0 +1,9 @@
+#character_preference-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "character_preference-modal-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#character_preference-modal-label.modal-title Character Preference Form
+
+      = render 'character_preferences/character_preference_form', character_preference: character_preference

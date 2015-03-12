@@ -14,7 +14,7 @@ class Applicant < ActiveRecord::Base
   has_one :address_info
   has_one :job_preference
 
-  [:answers, :educations, :families, :languages, :skills, :certificates].each do |resource|
+  [:answers, :educations, :families, :languages, :skills, :certificates, :character_preferences].each do |resource|
     has_many resource
   end
 
@@ -29,6 +29,6 @@ class Applicant < ActiveRecord::Base
   attr_accessor :accept_terms
 
   def fullname
-    "#{firstname} #{middlename} #{lastname}"
+    [firstname, middlename, lastname].compact.join(" ")
   end
 end

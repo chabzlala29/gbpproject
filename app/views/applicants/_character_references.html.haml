@@ -1,9 +1,14 @@
-%a#character_references.header_link.btn.btn-mini.btn-primary{:href => "#"}
+%a#character_preferences.header_link.btn.btn-mini.btn-primary{:href => "#",  data: { 'toggle' => 'modal', 'target' => '#character_preference-modal' }}
   %i.icon-plus-sign.icon-white
   Add Character Reference
 %h1 Character References
-#character_reference_list
+#character_preference_list
+  .sub_section.clearfix
+    %div.character_preferences-list-wrapper.left-side
+      = render @character_preferences
   .sub_section.clearfix
     .tips
       %h4 Tips :
       %p You can add character reference like your co-employee.
+
+= render 'character_preferences/form', character_preference: current_applicant.character_preferences.new
