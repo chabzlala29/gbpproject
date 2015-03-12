@@ -1,0 +1,13 @@
+= form_for skill, remote: true do |f|
+  .modal-body
+    .form-group
+      = f.label :skill
+      = f.text_field :skill, class: 'form-control'
+    .form-group
+      = f.label :years_of_experience
+      = f.select :years_of_experience, (1..10).to_a, class: 'form-control'
+    .form-group
+      = f.label :proficiency
+      = f.select :proficiency, make_options(Skill.proficiencies), class: 'form-control'
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary'

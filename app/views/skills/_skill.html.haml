@@ -1,0 +1,18 @@
+.listing_item
+  %h3
+    Skill: 
+    %span{style: 'font-weight: normal'}
+      = skill.skill
+  %h3
+    Years of Experience:
+    %span{style: 'font-weight: normal'}
+      = pluralize(skill.years_of_experience, 'year')
+  %h3
+    Proficiency:
+    %span{style: 'font-weight: normal'}
+      = skill.proficiency.titleize
+
+  .actions
+    = link_to 'Edit', edit_skill_path(skill), remote: true
+    \  |  
+    = link_to 'Delete', skill_path(skill), method: :delete, remote: true, onclick: 'return confirm("Are you sure?")'

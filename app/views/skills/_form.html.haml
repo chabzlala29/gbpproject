@@ -1,0 +1,9 @@
+#skill-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "skill-modal-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#skill-modal-label.modal-title Skill Form
+
+      = render 'skills/skill_form', skill: skill

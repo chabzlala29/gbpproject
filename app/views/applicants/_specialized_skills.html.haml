@@ -1,9 +1,14 @@
-%a#specialized_skills.header_link.btn.btn-mini.btn-primary{:href => "#"}
+%a#skills.header_link.btn.btn-mini.btn-primary{:href => "#", data: { 'toggle' => 'modal', 'target' => '#skill-modal' } }
   %i.icon-plus-sign.icon-white
   Add Skill
 %h1 Specialized Skills
-#skills_list
+#skill_list
+  .sub_section.clearfix
+    %div.skills-list-wrapper.left-side
+      = render @skills
   .sub_section.clearfix
     .tips
       %h4 Tips :
       %p You can add a skill like accounting, public speaking, etc.
+
+= render 'skills/form', skill: current_applicant.skills.new

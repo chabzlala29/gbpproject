@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root to: 'applicants#edit'
 
-  resources :educations, only: [:edit, :update, :create, :destroy]
-  resources :families, only: [:edit, :update, :create, :destroy]
-  resources :languages, only: [:edit, :update, :create, :destroy]
+  [:educations, :families, :languages, :skills].each do |ctrl|
+    resources ctrl, only: [:edit, :update, :create, :destroy]
+  end
 end

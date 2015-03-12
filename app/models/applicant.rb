@@ -12,11 +12,11 @@ class Applicant < ActiveRecord::Base
   enum gender: [:male, :female]
 
   has_one :address_info
-  has_many :answers
   has_one :job_preference
-  has_many :educations
-  has_many :families
-  has_many :languages
+
+  [:answers, :educations, :families, :languages, :skills].each do |resource|
+    has_many resource
+  end
 
   accepts_nested_attributes_for :address_info, :answers, :job_preference
 

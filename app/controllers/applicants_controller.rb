@@ -47,6 +47,7 @@ class ApplicantsController < ApplicationController
     @educations = current_applicant.educations
     @families = current_applicant.families
     @languages = current_applicant.languages
+    @skills = current_applicant.skills
   end
 
   def applicant_params
