@@ -1,0 +1,28 @@
+= form_for education, remote: true do |f|
+  .modal-body
+    .form-group
+      = f.label :level
+      = f.select :level, make_options(Education.levels), class: 'form-control'
+    .form-group
+      = f.label :institution
+      = f.text_field :institution, class: 'form-control', placeholder: 'Type in name of your school or institution'
+    .form-group
+      = f.label :field
+      = f.text_field :field, class: 'form-control', placeholder: 'Type in your field of study'
+    .form-group
+      = f.label :grade
+      = f.text_field :grade, class: 'form-control', placeholder: 'Enter your grade or GPA'
+    .form-group
+      = f.label :awards
+      = f.text_area :awards, class: 'form-control', placeholder: 'Enter your awards separated by commas'
+    .form-group
+      = f.label :location
+      = f.text_field :location, class: 'form-control', placeholder: 'Type in the location of your school'
+    .form-group
+      = f.label :major
+      = f.text_field :major, class: 'form-control', placeholder: 'Type in your major'
+    .form-group
+      = f.label :graduation_year
+      = f.number_field :graduation_year, class: 'form-control', placeholder: 'Type in the year your graduate'
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary'

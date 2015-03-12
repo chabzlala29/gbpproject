@@ -4,8 +4,12 @@ jQuery.extend @Form,
     Form.formEvents()
 
   formEvents: ->
-    $datepicker = $('#applicant_birthdate')
+    $datepicker = $('.datepicker')
     $datepicker.datepicker dateFormat: 'yy-dd-mm'
+
+    changeValueOfAcceptTerms = () ->
+      $('#accept_terms').change (e) ->
+        $('#applicant_accept_terms').prop('checked', $(e.target).is(':checked'))
 
     checkFriendIsSelected = (target) ->
       if target.val() == 'Friend'
@@ -34,6 +38,8 @@ jQuery.extend @Form,
 
     checkIfSpecifyIsChecked $('#specify_other')
     checkFriendIsSelected $('#applicant_job_preference_attributes_source')
+    changeValueOfAcceptTerms()
+
     $('#applicant_job_preference_attributes_source').change ->
       checkFriendIsSelected $(this)
       return

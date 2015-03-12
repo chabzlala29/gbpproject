@@ -1,0 +1,9 @@
+#family-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "family-modal-label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#family-modal-label.modal-title Family Form
+
+      = render 'families/family_form', family: family
