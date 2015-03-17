@@ -23,6 +23,15 @@ class Applicant < ActiveRecord::Base
   validates :firstname, presence: true
   validates :lastname, presence: true
   validates :middlename, presence: true
+  validates :nickname, presence: true
+  validates :birthdate, presence: true
+  validates :citizenship, presence: true
+  validates :gender, presence: true
+  validates :birthplace, presence: true
+  validates :civil_status, presence: true
+  validates :availability_status, presence: true
+  validates :work_experience, presence: true
+
 
   dragonfly_accessor :avatar
 
@@ -32,3 +41,12 @@ class Applicant < ActiveRecord::Base
     [firstname, middlename, lastname].compact.join(" ")
   end
 end
+
+
+
+
+
+
+
+
+

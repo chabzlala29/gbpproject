@@ -15,9 +15,13 @@
 %hr.large/
 = check_box_tag :accept_terms
 %label
-  *  I accept the
-  %a{:href => "#"} Terms and Conditions
-= button_tag 'Create Resume', id: 'submit-applicant-form', class: 'btn btn-large btn-primary', style: 'float:right'
+  *  I accept the Terms and Conditions:
+  
+  %p I hereby affirm that the statements made by me on this application are true and correct and that I have not withheld nor misrepresented any fact or circumstance which would, if disclosed, affect my application for employment. I hereby allow Global Business Power Corporation to verify the information contained herein. I understand that any misrepresentation or omission of any material fact discovered during the course of my employment will be sufficient ground for my termination.
+  
+= button_tag 'Save Only', id: 'submit-applicant-form', class: 'btn btn-large btn-primary', style: 'float:right'  
+%br
+= button_tag 'Submit Form', id: 'submit-applicant-form', class: 'btn btn-large btn-primary', style: 'float:right'
 
 :javascript
   $(function(){

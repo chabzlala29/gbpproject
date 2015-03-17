@@ -1,13 +1,6 @@
 = form_for certificate, remote: true do |f|
   .modal-body
     .form-group
-      = f.label :name
-      = f.text_field :name, class: 'form-control'
-    .form-group
-      = f.label :year
-      = f.select :year, year_choices, class: 'form-control'
-    .form-group
-      = f.label :grade
-      = f.number_field :grade, class: 'form-control'
+      = f.file_field :avatar
   .modal-footer
     = f.submit 'Save', class: 'btn btn-primary'
