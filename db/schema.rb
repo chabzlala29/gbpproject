@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317153705) do
+ActiveRecord::Schema.define(version: 20150317162057) do
 
   create_table "address_infos", force: :cascade do |t|
     t.integer  "applicant_id"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20150317153705) do
     t.string   "work_experience"
     t.string   "avatar_uid"
     t.string   "avatar_name"
+    t.integer  "status"
   end
 
   add_index "applicants", ["email"], name: "index_applicants_on_email", unique: true

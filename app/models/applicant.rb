@@ -10,6 +10,7 @@ class Applicant < ActiveRecord::Base
 
   enum civil_status: [:single, :married, :widow, :divorced]
   enum gender: [:male, :female]
+  enum status: [:pending, :completed]
 
   has_one :address_info, dependent: :destroy
   has_one :job_preference, dependent: :destroy
@@ -33,9 +34,25 @@ class Applicant < ActiveRecord::Base
 
   dragonfly_accessor :avatar
 
-  attr_accessor :accept_terms
+  attr_accessor :accept_terms, :pending
 
   def fullname
     [firstname, middlename, lastname].compact.join(" ")
+  end
+
+  def set_status(pending_status)
+    if pending_status.eql?('true')
+      pending!
+    else
+      completed!
+    end
+  end
+
+  RailsAdmin.config do |config|
+    config.model 'Applicant' do
+      list do
+        scopes [:completed]
+      end
+    end
   end
 end

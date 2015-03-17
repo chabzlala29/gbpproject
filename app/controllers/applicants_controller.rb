@@ -31,8 +31,19 @@ class ApplicantsController < ApplicationController
 
       @error_str = set_errors(@applicant) unless @valid
 
+      @pending = applicant_params[:pending].eql?('true')
 
-      @applicant.save if @valid
+
+      if applicant_params[:pending].eql?('true')
+        @applicant.status = "pending"
+        @applicant.save(validate: false)
+      else
+        if @valid
+          @applicant.save
+          current_applicant.set_status(applicant_params[:pending])
+        end
+      end
+
     end
 
   end
@@ -51,7 +62,7 @@ class ApplicantsController < ApplicationController
 
   def applicant_params
     params.require(:applicant).permit(:accept_terms, :firstname, :middlename, :lastname, :nickname, :birthdate, :citizenship, :gender,
-                                      :height, :religion, :sss_number, :birthplace, :civil_status, :weight, :tin, :philhealth,
+                                      :height, :religion, :sss_number, :birthplace, :civil_status, :weight, :tin, :philhealth, :pending,
                                       :availability_status, :work_experience, :avatar, address_info_attributes: [:street, :village, :city,
                                                                                                                  :country, :phone_home, :mobile, :phone_office, :fax],
                                                                                                                  job_preference_attributes: [:first_pref, :second_pref,

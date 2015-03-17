@@ -1,7 +1,10 @@
 <% if @valid %>
   window.location = "<%= edit_profile_path %>"
+<% elsif @pending %>
+  window.location = "<%= edit_profile_path %>"
 <% elsif !@accepted_terms %>
   alert('You must accept terms.');
 <% else %>
-  alert('<%= @error_str %>');
+  var error_str = "<%= @error_str %>".replace(/&#39;/g, "'");
+  alert(error_str);
 <% end %>
