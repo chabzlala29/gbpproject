@@ -3,9 +3,9 @@ class JobPreference < ActiveRecord::Base
 
   SOURCE_LISTS = ['Social Media', 'Ads', 'Friend','Newspaper Ad ', 'Current Employee ']
 
-  validates :first_pref, presence: true
-  validates :second_pref, presence: true
-  validates :source, presence: true
+  #validates :first_pref, presence: true
+  #validates :second_pref, presence: true
+  #validates :source, presence: true
 
 
   attr_accessor :source_sub

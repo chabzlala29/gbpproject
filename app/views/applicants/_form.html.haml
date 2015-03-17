@@ -2,7 +2,6 @@
   = render 'applicants/personal_information', f: f
   = render 'applicants/address_contacts', f: f
   = render 'applicants/job_preferences', f: f
-  = render 'applicants/additional_information', f: f
   = f.check_box :accept_terms, style: 'display: none'
 
 = render 'applicants/education'
@@ -20,8 +19,8 @@
   %p I hereby affirm that the statements made by me on this application are true and correct and that I have not withheld nor misrepresented any fact or circumstance which would, if disclosed, affect my application for employment. I hereby allow Global Business Power Corporation to verify the information contained herein. I understand that any misrepresentation or omission of any material fact discovered during the course of my employment will be sufficient ground for my termination.
   
 = button_tag 'Save Only', id: 'submit-applicant-form', class: 'btn btn-large btn-primary', style: 'float:right'  
-%br
-= button_tag 'Submit Form', id: 'submit-applicant-form', class: 'btn btn-large btn-primary', style: 'float:right'
+-#%br
+-#= button_tag 'Submit Form', id: 'submit-applicant-form', class: 'btn btn-large btn-primary', style: 'float:right'
 
 :javascript
   $(function(){

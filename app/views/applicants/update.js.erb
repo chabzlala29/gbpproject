@@ -1,5 +1,7 @@
 <% if @valid %>
   window.location = "<%= edit_profile_path %>"
+<% elsif !@accepted_terms %>
+  alert('You must accept terms.');
 <% else %>
-  alert('You must accept terms or complete required fields (*).');
+  alert('<%= @error_str %>');
 <% end %>

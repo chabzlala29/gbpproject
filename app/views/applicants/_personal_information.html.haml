@@ -10,7 +10,7 @@
     = f.label 'Last Name*'
     = f.text_field :lastname
 
-    = f.label :"nickname*"
+    = f.label "Nickname*"
     = f.text_field :nickname
 
   .form-vertical.left{ style: 'margin-left: 10px;'}
@@ -18,16 +18,16 @@
     = f.text_field :birthdate, class: 'datepicker'
     = f.label 'Birth Place*'
     = f.text_field :birthplace
-    = f.label :"citizenship*"
+    = f.label "Citizenship*"
     = f.select :citizenship, Applicant::CITIZENSHIP_LISTS
 
-    = f.label :"civil_status*"
-    = f.select :citizenship, civil_statuses
+    = f.label "Civil_status*"
+    = f.select :civil_status, civil_statuses
 
-    = f.label :"gender*"
+    = f.label "Gender*"
     = f.select :gender, genders
 
-    = f.label :"religion*"
+    = f.label "Religion*"
     = f.text_field :religion
   .form-vertical.left.optional{:style => "margin-left: 10px;"}
     = f.label :height

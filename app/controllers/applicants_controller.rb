@@ -13,12 +13,6 @@ class ApplicantsController < ApplicationController
       @applicant.build_address_info
     end
 
-    @questions.each do |q|
-      if @applicant.answers.where(question: q).empty?
-        @applicant.answers.new(question: q)
-      end
-    end
-
     if @applicant.job_preference.nil?
       @applicant.build_job_preference
     end
@@ -26,13 +20,17 @@ class ApplicantsController < ApplicationController
 
   def update
     @applicant = current_applicant
+    @accepted_terms = applicant_params[:accept_terms].eql?("1")
 
-    if applicant_params[:accept_terms] == "1"
+    if @accepted_terms
       filtered_params = set_params
 
       @applicant.assign_attributes(filtered_params)
 
       @valid = @applicant.valid?
+
+      @error_str = set_errors(@applicant) unless @valid
+
 
       @applicant.save if @valid
     end
@@ -43,7 +41,6 @@ class ApplicantsController < ApplicationController
 
   def load_nested_resources
     @applicant = current_applicant
-    @questions = Question.all
     @educations = current_applicant.educations
     @families = current_applicant.families
     @languages = current_applicant.languages
@@ -57,7 +54,6 @@ class ApplicantsController < ApplicationController
                                       :height, :religion, :sss_number, :birthplace, :civil_status, :weight, :tin, :philhealth,
                                       :availability_status, :work_experience, :avatar, address_info_attributes: [:street, :village, :city,
                                                                                                                  :country, :phone_home, :mobile, :phone_office, :fax],
-                                                                                                                 answers_attributes: [:id, :question_id, :answer],
                                                                                                                  job_preference_attributes: [:first_pref, :second_pref,
                                                                                                                                              :third_pref, :source, :firstname, :lastname, :source_sub]
                                      )
@@ -77,6 +73,10 @@ class ApplicantsController < ApplicationController
     end
 
     hash
+  end
+
+  def set_errors(applicant)
+    applicant.errors.messages.map{|k,v| k.to_s.titleize + ' ' + v.first.to_s }.join(', ')
   end
 end
 

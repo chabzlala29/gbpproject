@@ -11,14 +11,14 @@ class Applicant < ActiveRecord::Base
   enum civil_status: [:single, :married, :widow, :divorced]
   enum gender: [:male, :female]
 
-  has_one :address_info
-  has_one :job_preference
+  has_one :address_info, dependent: :destroy
+  has_one :job_preference, dependent: :destroy
 
-  [:answers, :educations, :families, :languages, :skills, :certificates, :character_preferences].each do |resource|
+  [:educations, :families, :languages, :skills, :certificates, :character_preferences].each do |resource|
     has_many resource
   end
 
-  accepts_nested_attributes_for :address_info, :answers, :job_preference
+  accepts_nested_attributes_for :address_info, :job_preference
 
   validates :firstname, presence: true
   validates :lastname, presence: true
@@ -29,8 +29,6 @@ class Applicant < ActiveRecord::Base
   validates :gender, presence: true
   validates :birthplace, presence: true
   validates :civil_status, presence: true
-  validates :availability_status, presence: true
-  validates :work_experience, presence: true
 
 
   dragonfly_accessor :avatar
@@ -41,12 +39,3 @@ class Applicant < ActiveRecord::Base
     [firstname, middlename, lastname].compact.join(" ")
   end
 end
-
-
-
-
-
-
-
-
-

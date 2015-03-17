@@ -4,8 +4,8 @@ class AddressInfo < ActiveRecord::Base
 
   belongs_to :applicant
 
-  validates :city, presence: true
-  validates :country, presence: true
-  validates :mobile, presence: true
+  #validates :city, presence: true
+  #validates :country, presence: true
+  #validates :mobile, presence: true
 
 end
