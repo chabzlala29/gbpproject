@@ -1,6 +1,6 @@
-= form_for certificate, remote: true do |f|
+= form_for certificate do |f|
   .modal-body
     .form-group
-      = f.file_field :avatar
+      = f.file_field :file
   .modal-footer
     = f.submit 'Save', class: 'btn btn-primary'

@@ -1,18 +1,16 @@
 .listing_item
   %h3
-    Certificate Name: 
+    File: 
     %span{style: 'font-weight: normal'}
-      = certificate.name
-  %h3
-    Year Obtained:
-    %span{style: 'font-weight: normal'}
-      = certificate.year
-  %h3
-    Grade:
-    %span{style: 'font-weight: normal'}
-      = certificate.grade
+      = link_to certificate.file_name, certificate.file.url, target: '_blank'
+  -#%h3
+    -#Year Obtained:
+    -#%span{style: 'font-weight: normal'}
+      -#= certificate.year
+  -#%h3
+    -#Grade:
+    -#%span{style: 'font-weight: normal'}
+      -#= certificate.grade
 
   .actions
-    = link_to 'Edit', edit_certificate_path(certificate), remote: true
-    \  |  
-    = link_to 'Delete', certificate_path(certificate), method: :delete, remote: true, onclick: 'return confirm("Are you sure?")'
+    = link_to 'Delete', certificate_path(certificate), method: :delete, onclick: 'return confirm("Are you sure?")'

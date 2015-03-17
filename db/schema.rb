@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317142633) do
+ActiveRecord::Schema.define(version: 20150317153705) do
 
   create_table "address_infos", force: :cascade do |t|
     t.integer  "applicant_id"
@@ -89,6 +89,8 @@ ActiveRecord::Schema.define(version: 20150317142633) do
     t.string   "grade"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "file_uid"
+    t.string   "file_name"
   end
 
   create_table "character_preferences", force: :cascade do |t|

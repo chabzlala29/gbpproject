@@ -5,6 +5,8 @@ class CertificatesController < ApplicationController
     @certificate = current_applicant.certificates.new(filtered_params) 
     @certificate.save
     @certificates = current_applicant.certificates
+
+    redirect_to edit_profile_path
   end
 
   def edit
@@ -21,12 +23,14 @@ class CertificatesController < ApplicationController
     @certificate = Certificate.find(params[:id])
     @certificate.destroy
     @certificates = current_applicant.certificates
+
+    redirect_to edit_profile_path
   end
 
   protected
 
   def certificates_params
-    params.require(:certificate).permit(:name, :year, :grade)
+    params.require(:certificate).permit(:file)
   end
 
   def filtered_params # this filters the params to not include empty fields
