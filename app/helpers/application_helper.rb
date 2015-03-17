@@ -11,6 +11,14 @@ module ApplicationHelper
     object.map{|k,v| [k.titleize, k]}
   end
 
+  def job_options(object)
+    if object.present?
+      object.map(&:name)
+    else
+      Job::DEFAULT_JOBS
+    end
+  end
+
   def set_level(level)
     Language.levels.select{|k,v| v == level.to_i }.first.first.titleize
   end

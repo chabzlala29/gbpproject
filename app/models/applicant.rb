@@ -36,6 +36,10 @@ class Applicant < ActiveRecord::Base
 
   attr_accessor :accept_terms, :pending
 
+  def self.job_lists
+    Job.all
+  end
+
   def fullname
     [firstname, middlename, lastname].compact.join(" ")
   end

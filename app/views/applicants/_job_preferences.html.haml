@@ -4,15 +4,15 @@
     .form-vertical.left-side
       %label
         1st Preference
-      = job.text_field :first_pref
+      = job.select :first_pref, job_options(Applicant.job_lists)
 
       %label
         2nd Preference
-      = job.text_field :second_pref
+      = job.select :second_pref, job_options(Applicant.job_lists)
 
       %label.optional
         3rd Preference
-      = job.text_field :third_pref
+      = job.select :third_pref, job_options(Applicant.job_lists)
 
     .form-vertical.left-side
       %label#source_label
